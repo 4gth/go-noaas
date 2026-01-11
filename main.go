@@ -11,7 +11,7 @@ import (
 
 var excuses []string
 
-func loadExuces() {
+func loadExcuses() {
 	fdata, err := os.ReadFile("reasons.json")
 	if err != nil {
 		log.Fatalf("reasons.json not found or unable to load: %v", err)
@@ -21,14 +21,14 @@ func loadExuces() {
 	}
 }
 
-func exucseHandler(w http.ResponseWriter, req *http.Request) {
-	loadExuces()
+func excucseHandler(w http.ResponseWriter, req *http.Request) {
+	loadExcuses()
 
 	io.WriteString(w, excuses[rand.Intn(len(excuses))])
 }
 
 func main() {
 
-	http.HandleFunc("/hello", exucseHandler)
+	http.HandleFunc("/no", excucseHandler)
 	log.Fatal(http.ListenAndServe(":8080", nil))
 }
